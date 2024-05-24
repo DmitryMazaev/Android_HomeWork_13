@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Android_HomeWork_12</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="search">ПОИСК</string>
+    <string name="text">Здесь будет отображаться результат запроса</string>
+    <string name="previous">Previous</string>
+    <string name="hint_edit_text">Введите запрос</string>
+</resources>
