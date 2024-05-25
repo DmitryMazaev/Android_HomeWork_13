@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.android_homework_12.R
 import com.example.android_homework_12.databinding.FragmentFirstBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,7 @@ class FirstFragment : Fragment() {
     private var minCountSymbol: Int = 3
     private var searchQuery: String = ""
     private var searchStatus: String = "Запрос обрабатывается"
+    private var initialText: String = "Инициализация"
     private var _binding: FragmentFirstBinding? = null
 
     // This property is only valid between onCreateView and
@@ -56,11 +59,17 @@ class FirstFragment : Fragment() {
                 viewModel.state
                     .collect {state ->
                         when(state) {
-                            State.Search -> {
+                            is State.Initial -> {
+                                Toast.makeText(context, initialText, Toast.LENGTH_SHORT).show()
+                            }
+                            is State.Search -> {
                                 onSearch()
                             }
-                            State.Succes -> {
-                                resultSearch(binding.editText.text.toString())
+                            is State.Succes -> {
+                                resultSearch(state.search)
+                            }
+                            is State.Error -> {
+                                Toast.makeText(context, state.error, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
