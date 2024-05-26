@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.android_homework_12.R
+import com.example.android_homework_12.databinding.ActivityMainBinding
 import com.example.android_homework_12.databinding.FragmentFirstBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
@@ -28,17 +30,19 @@ class FirstFragment : Fragment() {
     private var searchQuery: String = ""
     private var searchStatus: String = "Запрос обрабатывается"
     private var initialText: String = "Инициализация"
-    private var _binding: FragmentFirstBinding? = null
+    //private var _binding: FragmentFirstBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    //private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        //В видео binding создавался так
+        val binding = DataBindingUtil.inflate<ActivityMainBinding>(inflater, R.layout.activity_main, container,false)
+        //_binding = FragmentFirstBinding.inflate(inflater, container, false)
 
         return binding.root
 

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
+
 android {
     namespace = "com.example.android_homework_12"
     compileSdk = 34
@@ -35,6 +36,8 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
     }
 }
 
@@ -51,5 +54,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     runtimeOnly("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     runtimeOnly("androidx.fragment:fragment-ktx:1.7.1")
-
 }
