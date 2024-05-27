@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@+id/button_search"
                 app:layout_constraintEnd_toStartOf="@+id/button_search"
-                android:visibility="invisible"/>
+                android:visibility="@{viewModel.state == State.Search.INSTANCE ? View.VISIBLE: View.GONE}"
+                />
             <Button
                 android:id="@+id/button_search"
                 android:layout_width="wrap_content"
@@ -54,6 +55,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
     <data>
-
+        <import type="android.view.View"/>
+        <import type="com.example.android_homework_12.main.State"/>
+        <variable
+            name="viewModel"
+            type="com.example.android_homework_12.main.MainViewModel" />
     </data>
 </layout>
