@@ -28,8 +28,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@+id/button_search"
                 app:layout_constraintEnd_toStartOf="@+id/button_search"
-                android:visibility="@{viewModel.state == State.Search.INSTANCE ? View.VISIBLE: View.GONE}"
-                />
+                android:visibility="@{viewModel.state == State.Search.INSTANCE ? View.VISIBLE: View.GONE}" />
+
             <Button
                 android:id="@+id/button_search"
                 android:layout_width="wrap_content"
@@ -38,6 +38,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/edit_text"
                 android:layout_marginVertical="40dp"
                 android:text="@string/search"
+                android:onClick="@{() -> viewModel.search()}"
                 />
 
             <TextView
@@ -47,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/button_search"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/text"
+                android:text="@{result}"
                 android:layout_marginVertical="50dp"
                 android:layout_marginHorizontal="20dp"
                 android:textSize="24sp"
@@ -60,5 +61,8 @@
         <variable
             name="viewModel"
             type="com.example.android_homework_12.main.MainViewModel" />
+        <variable
+            name="result"
+            type="String" />
     </data>
 </layout>

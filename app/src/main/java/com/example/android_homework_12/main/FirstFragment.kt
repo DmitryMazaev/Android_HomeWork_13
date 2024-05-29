@@ -52,14 +52,18 @@ class FirstFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.buttonSearch.isEnabled = false
+
+        binding.result = resultToStart()
+
         binding.editText.addTextChangedListener {
             checkOnCountSymbol()
             searchQuery = binding.editText.text.toString()
         }
+        /* Исключил слушатель кнопки, работает
         binding.buttonSearch.setOnClickListener {
             viewModel.search(searchQuery)
-        }
-        /*viewLifecycleOwner.lifecycleScope
+        }*/
+        viewLifecycleOwner.lifecycleScope
             .launch {
                 viewModel.state
                     .collect {state ->
@@ -71,14 +75,14 @@ class FirstFragment : Fragment() {
                                 //onSearch()
                             }
                             is State.Succes -> {
-                                resultSearch(state.search)
+                                resultSearch()
                             }
                             is State.Error -> {
                                 Toast.makeText(context, state.error, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
-            }*/
+            }
 
     }
 
@@ -98,9 +102,13 @@ class FirstFragment : Fragment() {
         binding.progress.isVisible = true
         binding.text.text = searchStatus
     }
-    fun resultSearch(text: String) {
+    fun resultSearch() {
         binding.progress.isVisible = false
-        binding.text.text = "По запросу $text ничего не найдено"
+        binding.text.text = "По запросу $searchQuery ничего не найдено"
         binding.editText.setText("")
+    }
+
+    fun resultToStart(): String {
+        return "Здесь должен быть запрос"
     }
 }
